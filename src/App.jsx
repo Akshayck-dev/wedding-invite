@@ -35,6 +35,12 @@ function Intro({ onEnter }) {
         <div className="particles" aria-hidden="true">
           {Array.from({ length: 16 }).map((_, i) => <span key={i} />)}
         </div>
+        <div className="light-burst" aria-hidden="true" />
+        <div className="rays" aria-hidden="true" />
+        <div className="flash" aria-hidden="true" />
+        <div className="particles burst" aria-hidden="true">
+          {Array.from({ length: 14 }).map((_, i) => <span key={i} />)}
+        </div>
 
         <div className="curtain curtain-left" aria-hidden="true">
           <div className="fabric-folds" /><div className="curtain-trim" />
