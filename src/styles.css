@@ -12,7 +12,7 @@ a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit}
 /* ---------- intro shell ---------- */
 .intro { position: fixed; inset: 0; overflow: hidden; background: var(--deep); }
-.scene { position: absolute; inset: 0; overflow: hidden; isolation: isolate; background: var(--deep); }
+.scene { position: absolute; inset: 0; overflow: hidden; isolation: isolate; background: var(--deep); perspective: 1400px; }
 
 /* ---------- cinematic layers ---------- */
 .layer {
@@ -122,26 +122,51 @@ button,input,select,textarea{font:inherit}
     linear-gradient(90deg, #160309 0%, #3c0712 8%, #7c182a 18%, #4a0715 28%, #74152a 42%, #30050e 53%, #650d1b 66%, #28040c 79%, #5b0b1b 91%, #1a0308 100%);
   box-shadow: inset 0 0 45px #080105, inset -12px 0 20px #0d0205a0;
   transition: transform 1.4s cubic-bezier(.77, 0, .18, 1);
+  transform-style: preserve-3d;
   pointer-events: none;
 }
-.curtain-left { left: 0; border-right: 2px solid #d7ad4e; }
-.curtain-right { right: 0; border-left: 2px solid #d7ad4e; }
+.curtain-left { left: 0; border-right: 2px solid #d7ad4e; transform-origin: left center; }
+.curtain-right { right: 0; border-left: 2px solid #d7ad4e; transform-origin: right center; }
 .fabric-folds { position: absolute; inset: 0; opacity: .75; background: repeating-linear-gradient(90deg, #f5c66c08 0 4px, #09010535 8px 13px, transparent 22px 42px); }
 .curtain::after { content: ""; position: absolute; inset: 0; opacity: .25; background: repeating-linear-gradient(0deg, transparent 0 40px, #e7c66a12 41px 42px); }
 .curtain-trim { position: absolute; top: 0; bottom: 0; width: 7px; background: linear-gradient(90deg, #8a611e, #ffe5a0, #a77727); box-shadow: 0 0 14px #e7c66a40; }
 .curtain-left .curtain-trim { right: 0; }
 .curtain-right .curtain-trim { left: 0; }
 
-/* phase 0: hidden off-screen · phase 1: closed · phase 2+: opening slowly */
+/* phase 0: hidden off-screen · phase 1: doors closed · phase 2+: doors swing open in 3D */
 .phase-0 .curtain-left  { transform: translateX(-102%); }
 .phase-0 .curtain-right { transform: translateX(102%); }
-.phase-1 .curtain-left, .phase-1 .curtain-right { transform: translateX(0); }
-.phase-2 .curtain { transition-duration: 1.6s; }
+.phase-1 .curtain-left, .phase-1 .curtain-right { transform: translateX(0) rotateY(0deg); }
+.phase-2 .curtain { transition-duration: 1.8s; transition-timing-function: cubic-bezier(.6, 0, .2, 1); }
 .phase-2 .curtain-left, .phase-3 .curtain-left,
-.phase-4 .curtain-left, .phase-5 .curtain-left  { transform: translateX(-102%); }
+.phase-4 .curtain-left, .phase-5 .curtain-left  { transform: translateX(-14%) rotateY(-72deg); }
 .phase-2 .curtain-right, .phase-3 .curtain-right,
-.phase-4 .curtain-right, .phase-5 .curtain-right { transform: translateX(102%); }
+.phase-4 .curtain-right, .phase-5 .curtain-right { transform: translateX(14%) rotateY(72deg); }
 .phase-3 .curtain, .phase-4 .curtain, .phase-5 .curtain { visibility: hidden; }
+
+/* ---------- gold medallion clasp (double-door lock) ---------- */
+.door-medallion {
+  position: absolute; z-index: 4; left: 50%; top: 50%;
+  width: 92px; height: 118px; transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #fff3c9 0%, #f0cd72 35%, #b98a2e 70%, #7c5a1a 100%);
+  border: 3px solid #ffe9a8;
+  box-shadow: 0 0 30px #e7c66a88, inset 0 0 18px #7c5a1a66;
+  display: grid; place-items: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .7s ease, transform 1s ease;
+}
+.door-medallion::before {
+  content: ""; position: absolute; inset: 9px; border-radius: 50%;
+  border: 1px solid #7c5a1a77;
+}
+.door-medallion span { color: #5c3f10; font-size: 30px; line-height: 1; }
+.phase-1 .door-medallion { opacity: 1; animation: medallionPulse 1.6s ease-in-out infinite; }
+.phase-2 .door-medallion { opacity: 0; transform: translate(-50%, -50%) scale(1.7); animation: none; }
+@keyframes medallionPulse {
+  0%, 100% { box-shadow: 0 0 22px #e7c66a66, inset 0 0 18px #7c5a1a66; }
+  50% { box-shadow: 0 0 46px #ffe9a8dd, inset 0 0 18px #7c5a1a66; }
+}
 
 /* ---------- legibility vignette for text phases ---------- */
 .vignette {

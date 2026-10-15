@@ -48,6 +48,7 @@ function Intro({ onEnter }) {
         <div className="curtain curtain-right" aria-hidden="true">
           <div className="fabric-folds" /><div className="curtain-trim" />
         </div>
+        <div className="door-medallion" aria-hidden="true"><span>✦</span></div>
 
         <div className="vignette" aria-hidden="true" />
 
