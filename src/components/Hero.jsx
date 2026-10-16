@@ -9,7 +9,7 @@ import config from "../config";
  */
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.14, delayChildren: 0.25 } },
+  show: { transition: { staggerChildren: 0.13, delayChildren: 0.25 } },
 };
 
 const item = {
@@ -21,7 +21,7 @@ export default function Hero({ started }) {
   const { couple, hero } = config;
   return (
     <header
-      className="hero"
+      className="hero hero-arch"
       style={{ backgroundImage: `url(${config.assets.heroFinalFrame})` }}
     >
       <div className="hero-scrim" aria-hidden="true" />
@@ -31,32 +31,27 @@ export default function Hero({ started }) {
         initial="hidden"
         animate={started ? "show" : "hidden"}
       >
-        <motion.p className="arabic hero-arabic" variants={item}>
-          {hero.calligraphy}
-        </motion.p>
-        <motion.p className="hero-line" variants={item}>
+        <motion.p className="hero-kicker" variants={item}>
           {hero.introLine}
         </motion.p>
-        <motion.h1 className="script-names" variants={item}>
+        <motion.h1 className="script-names hero-names" variants={item}>
           <span>{couple.bride.name}</span>
         </motion.h1>
-        <motion.p className="parent-line" variants={item}>DAUGHTER OF</motion.p>
-        <motion.p className="parent-names" variants={item}>{couple.bride.family}</motion.p>
-        <motion.div className="amp" variants={item} aria-hidden="true">&amp;</motion.div>
-        <motion.h1 className="script-names" variants={item}>
+        <motion.div className="hero-amp" variants={item} aria-hidden="true">
+          <i /><em>&amp;</em><i />
+        </motion.div>
+        <motion.h1 className="script-names hero-names" variants={item}>
           <span>{couple.groom.name}</span>
         </motion.h1>
-        <motion.p className="parent-line" variants={item}>SON OF</motion.p>
-        <motion.p className="parent-names" variants={item}>{couple.groom.family}</motion.p>
-        <motion.p className="hero-dua" variants={item}>{hero.inviteLine}</motion.p>
-        <motion.div variants={item}>
-          <span className="hero-date">{hero.dateLine}</span>
-        </motion.div>
-        <motion.div className="scroll-cue" variants={item} aria-hidden="true">
-          <span>{hero.scrollHint}</span>
-          <i />
+        <motion.p className="hero-invite" variants={item}>
+          {hero.inviteLine}
+        </motion.p>
+        <motion.div className="hero-bottom" variants={item} aria-hidden="true">
+          <span>{hero.bottomLine}</span>
+          <b>◆</b>
         </motion.div>
       </motion.div>
+      <div className="hero-scallop" aria-hidden="true" />
     </header>
   );
 }

@@ -20,7 +20,8 @@ const config = {
   hero: {
     calligraphy: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
     introLine: "Together with our families",
-    inviteLine: "Invite you to celebrate their wedding",
+    inviteLine: "Invite you to share in our joy.",
+    bottomLine: "A NEW CHAPTER BEGINS",
     dateLine: "Sunday, 15 November 2026",
     scrollHint: "Scroll to Explore",
   },
@@ -28,7 +29,7 @@ const config = {
   welcome: {
     eyebrow: "WELCOME",
     heading: "A Blessed Beginning",
-    text: "With hearts full of gratitude, we warmly invite you to join us as we celebrate this beautiful beginning with the love, prayers, and blessings of our families.",
+    text: "With the grace of Allah, we invite you to celebrate the beginning of our journey together.",
     signature: "Amina & Fahad",
   },
 
@@ -38,7 +39,7 @@ const config = {
     revealTitle: "YOU'RE INVITED!",
     revealDate: "15 November 2026",
     revealDay: "Sunday • 10:30 AM",
-    countdownEyebrow: "UNTIL WE SAY QUBOOL HAI",
+    countdownEyebrow: "UNTIL OUR BIG DAY",
     countdownHeading: "Counting every heartbeat",
     // ISO date with timezone for the live countdown
     iso: "2026-11-15T10:30:00+05:30",
@@ -50,35 +51,43 @@ const config = {
     list: [
       {
         name: "Nikah Ceremony",
+        dayName: "SUN", dayNum: "15", month: "NOV",
         date: "Sunday, 15 November 2026",
         time: "11:30 AM onwards",
         venue: "The Grand Palace, Kozhikode",
         mapsUrl: "https://maps.google.com/?q=The+Grand+Palace+Kozhikode+Kerala+India",
+        icon: "rings",
         highlight: true,
       },
       {
         name: "Mehendi",
+        dayName: "FRI", dayNum: "13", month: "NOV",
         date: "Friday, 13 November 2026",
         time: "4:00 PM",
         venue: "Bride's Residence",
         mapsUrl: "https://maps.google.com/?q=Kozhikode+Kerala+India",
+        icon: "flower",
       },
       {
         name: "Qawwali Evening",
+        dayName: "SAT", dayNum: "14", month: "NOV",
         date: "Saturday, 14 November 2026",
         time: "7:00 PM",
         venue: "Groom's Residence",
         mapsUrl: "https://maps.google.com/?q=Kozhikode+Kerala+India",
+        icon: "music",
       },
       {
         name: "Walima",
+        dayName: "MON", dayNum: "16", month: "NOV",
         date: "Monday, 16 November 2026",
         time: "7:30 PM",
         venue: "The Grand Palace, Kozhikode",
         mapsUrl: "https://maps.google.com/?q=The+Grand+Palace+Kozhikode+Kerala+India",
+        icon: "cloche",
       },
     ],
-    note: "Event details are examples — share the real ones to update.",
+    note: "YOUR PRESENCE WILL MAKE OUR DAYS EVEN MORE SPECIAL.",
   },
 
   gallery: {
@@ -112,9 +121,10 @@ const config = {
   },
 
   rsvp: {
-    eyebrow: "RSVP",
+    eyebrow: "",
     heading: "Will you join us?",
-    text: "Kindly reply by 01 November — tap below to confirm on WhatsApp. Your presence would mean the world to us.",
+    text: "Kindly confirm your presence so we can plan with love and care.",
+    responseNote: "Your response means a lot to us",
     buttonLabel: "RSVP on WhatsApp",
     // Replace with the couple's/family's real WhatsApp number:
     whatsapp: "https://wa.me/910000000000?text=Assalamu%20Alaikum!%20I%20would%20love%20to%20attend%20the%20wedding.",
@@ -123,12 +133,12 @@ const config = {
   closing: {
     eyebrow: "WITH ALL OUR HEARTS",
     heading: "Your presence is our present",
-    text: "Your love, blessings, and presence are the greatest gifts we could ever ask for.",
+    text: "Your love, prayers and presence are all we request as we begin this beautiful journey together. We can't wait to celebrate with you.",
   },
 
   footer: {
     heading: "We can't wait to celebrate with you.",
-    meta: "15 NOVEMBER 2026 • THE GRAND PALACE",
+    meta: "IN SHA ALLAH • SEE YOU SOON",
   },
 };
 
