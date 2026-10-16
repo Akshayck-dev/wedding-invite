@@ -159,7 +159,7 @@ export default function Sections() {
           <p className="scratch-hint">
             {showCountdown
               ? "Save the date ♥ — and count down with us below."
-              : "Gently scratch the heart to reveal our wedding date."}
+              : "Gently scratch the card to reveal our wedding date."}
           </p>
           <ScratchCard onReveal={handleRevealed} />
         </Reveal>

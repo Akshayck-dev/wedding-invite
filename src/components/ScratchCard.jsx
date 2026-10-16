@@ -1,22 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import config from "../config";
 
-/** Heart path in a 0..100 box (shared by the SVG clip + canvas rim). */
-function traceHeart(ctx, w, h) {
-  const X = (v) => (v / 100) * w;
-  const Y = (v) => (v / 100) * h;
+/** Rounded-rect path helper (ctx.roundRect fallback). */
+function rr(ctx, x, y, w, h, r) {
   ctx.beginPath();
-  ctx.moveTo(X(50), Y(88));
-  ctx.bezierCurveTo(X(30), Y(70), X(10), Y(52), X(10), Y(30));
-  ctx.bezierCurveTo(X(10), Y(14), X(22), Y(6), X(34), Y(6));
-  ctx.bezierCurveTo(X(42), Y(6), X(48), Y(10), X(50), Y(18));
-  ctx.bezierCurveTo(X(52), Y(10), X(58), Y(6), X(66), Y(6));
-  ctx.bezierCurveTo(X(78), Y(6), X(90), Y(14), X(90), Y(30));
-  ctx.bezierCurveTo(X(90), Y(52), X(70), Y(70), X(50), Y(88));
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
   ctx.closePath();
 }
 
-/** Heart-shaped canvas scratch-to-reveal. Maroon + gold foil over the wedding date. */
+/** Square canvas scratch-to-reveal card. Maroon + gold foil over the wedding date. */
 export default function ScratchCard({ onReveal }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
@@ -57,25 +53,29 @@ export default function ScratchCard({ onReveal }) {
           ctx.beginPath(); ctx.arc(xx, yy, Math.max(1.5, w * 0.004), 0, 7); ctx.fill();
         }
       // soft top-light
-      const rg = ctx.createRadialGradient(w / 2, h * 0.28, 10, w / 2, h * 0.28, w * 0.7);
+      const rg = ctx.createRadialGradient(w / 2, h * 0.3, 10, w / 2, h * 0.3, w * 0.75);
       rg.addColorStop(0, "rgba(255,240,200,0.20)");
       rg.addColorStop(1, "rgba(255,240,200,0)");
       ctx.fillStyle = rg;
       ctx.fillRect(0, 0, w, h);
-      // gold rim along the heart edge
-      traceHeart(ctx, w, h);
+      // double gold rim
       const rim = ctx.createLinearGradient(0, 0, w, h);
       rim.addColorStop(0, "#e9c766");
       rim.addColorStop(0.5, "#b98a34");
       rim.addColorStop(1, "#f3e2b3");
+      rr(ctx, w * 0.03, h * 0.03, w * 0.94, h * 0.94, w * 0.05);
       ctx.strokeStyle = rim;
-      ctx.lineWidth = Math.max(4, w * 0.016);
+      ctx.lineWidth = Math.max(4, w * 0.014);
+      ctx.stroke();
+      rr(ctx, w * 0.055, h * 0.055, w * 0.89, h * 0.89, w * 0.04);
+      ctx.strokeStyle = "rgba(233,199,102,0.45)";
+      ctx.lineWidth = Math.max(2, w * 0.006);
       ctx.stroke();
       // hint text
       ctx.fillStyle = "rgba(243,226,179,0.95)";
-      ctx.font = `600 ${Math.round(h * 0.075)}px 'Cormorant Garamond', Georgia, serif`;
+      ctx.font = `600 ${Math.round(h * 0.06)}px 'Cormorant Garamond', Georgia, serif`;
       ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.fillText("✦  SCRATCH HERE  ✦", w / 2, h * 0.44);
+      ctx.fillText("✦  SCRATCH HERE  ✦", w / 2, h / 2);
     };
 
     const sizeCanvas = () => {
@@ -162,16 +162,9 @@ export default function ScratchCard({ onReveal }) {
   })();
 
   return (
-    <div className={`heart-stage${revealed ? " revealed" : ""}`} ref={wrapRef}>
-      <svg className="heart-defs" aria-hidden="true" focusable="false">
-        <defs>
-          <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
-            <path d="M0.5 0.88 C0.3 0.7 0.1 0.52 0.1 0.3 C0.1 0.14 0.22 0.06 0.34 0.06 C0.42 0.06 0.48 0.1 0.5 0.18 C0.52 0.1 0.58 0.06 0.66 0.06 C0.78 0.06 0.9 0.14 0.9 0.3 C0.9 0.52 0.7 0.7 0.5 0.88 Z" />
-          </clipPath>
-        </defs>
-      </svg>
-      <div className="heart-under heart-clip">
-        <span className="heart-rose-bg" aria-hidden="true">
+    <div className={`scratch-stage${revealed ? " revealed" : ""}`} ref={wrapRef}>
+      <div className="scratch-under">
+        <span className="scratch-rose-bg" aria-hidden="true">
           <svg viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="46" fill="#8e1f2f" />
             <circle cx="50" cy="50" r="34" fill="#b03a48" />
@@ -180,17 +173,17 @@ export default function ScratchCard({ onReveal }) {
           </svg>
         </span>
         <p className="under-eyebrow">{d.revealTitle}</p>
-        <span className="heart-mini-div" aria-hidden="true"><i />✦<i /></span>
+        <span className="scratch-mini-div" aria-hidden="true"><i />✦<i /></span>
         <p className="under-date num">{numericDate}</p>
         <p className="under-day">{d.revealDay}</p>
       </div>
       <canvas
         ref={canvasRef}
-        className={`heart-foil heart-clip${revealed ? " gone" : ""}`}
-        aria-label="Heart scratch card — drag to reveal the wedding date"
+        className={`scratch-foil${revealed ? " gone" : ""}`}
+        aria-label="Scratch card — drag to reveal the wedding date"
       />
       {!revealed && (
-        <span className="heart-hint" aria-hidden="true">SCRATCH TO REVEAL</span>
+        <span className="scratch-hint" aria-hidden="true">SCRATCH TO REVEAL</span>
       )}
     </div>
   );

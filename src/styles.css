@@ -148,42 +148,36 @@ img,video{max-width:100%}
 /* ======================= SCRATCH ======================= */
 .scratch-hint{font-size:1rem;font-style:italic;color:var(--ink-soft);margin-bottom:1.4rem}
 
-/* ---------- Heart scratch card ---------- */
-.heart-stage{position:relative;width:min(320px,80vw);aspect-ratio:100/92;margin:0 auto;
-  touch-action:none;cursor:pointer} /* none = screen never moves mid-scratch */
-/* static soft shadow (cheap) — a live drop-shadow filter repainted on every
-   scratch stroke and made both scrolling and scratching feel laggy */
-.heart-stage::before{content:"";position:absolute;left:5%;right:5%;top:9%;bottom:-3%;
-  background:radial-gradient(ellipse at center,rgba(58,8,18,.38),transparent 70%);
-  filter:blur(16px);pointer-events:none}
-.heart-stage.revealed{animation:heartPop .7s ease}
-@keyframes heartPop{0%{transform:scale(1)}35%{transform:scale(1.06)}70%{transform:scale(.985)}100%{transform:scale(1)}}
-.heart-defs{position:absolute;width:0;height:0;overflow:hidden}
-.heart-clip{clip-path:url(#heartClip)}
-.heart-under{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:.32rem;padding:18% 14% 18%;text-align:center;
-  background:radial-gradient(circle at 50% 32%,#fffdf6 0%,#f9efdb 55%,#f0dfba 100%);
-  box-shadow:inset 0 0 0 3px rgba(185,138,52,.55), inset 0 0 44px rgba(185,138,52,.20)}
-.heart-rose-bg{position:absolute;inset:0;display:grid;place-items:center;opacity:.09;
+/* ---------- Square scratch card ---------- */
+.scratch-stage{position:relative;width:min(340px,84vw);aspect-ratio:1/1;margin:0 auto;
+  touch-action:none;cursor:pointer;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(185,138,52,.55);
+  box-shadow:0 18px 36px rgba(58,8,18,.30)} /* none = screen never moves mid-scratch */
+.scratch-stage.revealed{animation:scratchPop .7s ease}
+@keyframes scratchPop{0%{transform:scale(1)}35%{transform:scale(1.04)}70%{transform:scale(.99)}100%{transform:scale(1)}}
+.scratch-under{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:.4rem;padding:9% 10% 15%;text-align:center;
+  background:radial-gradient(circle at 50% 30%,#fffdf6 0%,#f9efdb 55%,#f0dfba 100%)}
+.scratch-rose-bg{position:absolute;inset:0;display:grid;place-items:center;opacity:.09;
   pointer-events:none}
-.heart-rose-bg svg{width:76%;height:auto}
+.scratch-rose-bg svg{width:64%;height:auto}
+.scratch-mini-div{display:flex;align-items:center;gap:.55rem;color:#b98a34;font-size:.62rem;
+  margin:.1rem 0}
+.scratch-mini-div i{display:block;width:30px;height:1px;background:linear-gradient(90deg,transparent,#b98a34)}
+.scratch-mini-div i:last-child{background:linear-gradient(90deg,#b98a34,transparent)}
 .under-eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.3em;color:var(--gold-deep);
   position:relative;left:.15em} /* optically re-centre tracked text */
-.heart-mini-div{display:flex;align-items:center;gap:.55rem;color:#b98a34;font-size:.62rem;
-  margin:.1rem 0}
-.heart-mini-div i{display:block;width:30px;height:1px;background:linear-gradient(90deg,transparent,#b98a34)}
-.heart-mini-div i:last-child{background:linear-gradient(90deg,#b98a34,transparent)}
 .under-date{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,6.4vw,2rem);
   font-weight:700;color:var(--maroon-900);line-height:1.12}
-.under-date.num{font-size:clamp(1.9rem,8.2vw,2.5rem);letter-spacing:.04em;white-space:nowrap;
+.under-date.num{font-size:clamp(2rem,8.6vw,2.6rem);letter-spacing:.04em;white-space:nowrap;
   font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1} /* proper 1s, not I-like oldstyle */
 .under-day{font-size:.72rem;font-weight:700;letter-spacing:.24em;color:var(--ink-soft);
   position:relative;left:.12em} /* optically re-centre tracked text */
 /* foil is a canvas — scratching erases it; screen stays locked via touch-action:none */
-.heart-foil{position:absolute;inset:0;width:100%;height:100%;display:block;
+.scratch-foil{position:absolute;inset:0;width:100%;height:100%;display:block;
   transition:opacity .7s ease;touch-action:none}
-.heart-foil.gone{opacity:0;pointer-events:none}
-.heart-hint{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+.scratch-foil.gone{opacity:0;pointer-events:none}
+.scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   font-size:.66rem;font-weight:700;letter-spacing:.3em;color:#f3e2b3;white-space:nowrap;
   background:rgba(43,6,13,.55);border:1px solid rgba(201,162,74,.7);border-radius:999px;
   padding:.6rem 1.15rem .6rem 1.45rem;pointer-events:none;z-index:3;
