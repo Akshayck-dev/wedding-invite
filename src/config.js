@@ -35,7 +35,7 @@ const config = {
 
   dateSection: {
     eyebrow: "A DATE TO HOLD CLOSE",
-    heading: "A Heartfelt Reveal",
+    heading: "Scratch to Reveal",
     revealTitle: "YOU'RE INVITED!",
     revealDate: "15 November 2026",
     revealDay: "Sunday • 10:30 AM",

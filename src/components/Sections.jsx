@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import config from "../config";
-import RevealHeart from "./RevealHeart";
+import ScratchCard from "./ScratchCard";
 import Petals from "./Petals";
 import FloralDivider from "./FloralDivider";
 
@@ -151,7 +151,7 @@ export default function Sections() {
       </section>
       <FloralDivider />
 
-      {/* REVEAL — heart opens on scroll into view (or tap) */}
+      {/* SCRATCH */}
       <section className="ivory-deep section-pad">
         <Reveal>
           <p className="eyebrow">{dateSection.eyebrow}</p>
@@ -159,9 +159,9 @@ export default function Sections() {
           <p className="scratch-hint">
             {showCountdown
               ? "Save the date ♥ — and count down with us below."
-              : "The heart opens as you arrive — or tap it."}
+              : "Gently scratch the heart to reveal our wedding date."}
           </p>
-          <RevealHeart onReveal={handleRevealed} />
+          <ScratchCard onReveal={handleRevealed} />
         </Reveal>
       </section>
 
