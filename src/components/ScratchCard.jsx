@@ -92,7 +92,7 @@ export default function ScratchCard({ onReveal }) {
       const dpr = canvas.width / r.width;
       const x = (clientX - r.left) * dpr;
       const y = (clientY - r.top) * dpr;
-      const rad = Math.max(26, r.width * 0.085) * dpr;
+      const rad = Math.max(28, r.width * 0.1) * dpr;
       ctx.globalCompositeOperation = "destination-out";
       ctx.beginPath();
       if (last.current) {

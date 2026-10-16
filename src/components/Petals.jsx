@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 /** Gentle falling rose petals drifting over the invitation. Respects reduced motion. */
-export default function Petals({ count = 22 }) {
+export default function Petals({ count = 16 }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -27,6 +27,17 @@ export default function Petals({ count = 22 }) {
     };
     resize();
     window.addEventListener("resize", resize);
+
+    // Pause petal rendering while the user is actively scrolling —
+    // a full-screen canvas repaint during scroll is what made it feel stuck.
+    let scrolling = false;
+    let scrollTimer = null;
+    const onScroll = () => {
+      scrolling = true;
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => { scrolling = false; }, 300);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     const spawn = (anyY) => ({
       x: Math.random() * w,
@@ -59,15 +70,17 @@ export default function Petals({ count = 22 }) {
     };
 
     const tick = () => {
-      ctx.clearRect(0, 0, w, h);
-      for (let i = 0; i < petals.length; i++) {
-        const p = petals[i];
-        p.phase += p.swaySpeed;
-        p.y += p.vy;
-        p.x += Math.sin(p.phase) * p.swayAmp;
-        p.rot += p.vr;
-        if (p.y > h + 30) petals[i] = spawn(false);
-        drawPetal(petals[i]);
+      if (!scrolling) {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < petals.length; i++) {
+          const p = petals[i];
+          p.phase += p.swaySpeed;
+          p.y += p.vy;
+          p.x += Math.sin(p.phase) * p.swayAmp;
+          p.rot += p.vr;
+          if (p.y > h + 30) petals[i] = spawn(false);
+          drawPetal(petals[i]);
+        }
       }
       raf = requestAnimationFrame(tick);
     };
@@ -76,6 +89,8 @@ export default function Petals({ count = 22 }) {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", onScroll);
+      if (scrollTimer) clearTimeout(scrollTimer);
     };
   }, [count]);
 
