@@ -11,6 +11,15 @@ import config from "../config";
 export default function Opening({ phase, failed, onTap, onEnded, onFailed, onSkip }) {
   const videoRef = useRef(null);
 
+  const handleEnded = () => {
+    // Cut the video instantly: the hero behind shows the exact same final
+    // frame, so this is invisible — and it kills any end-of-video flash
+    // before the overlay crossfade begins.
+    const v = videoRef.current;
+    if (v) v.style.opacity = "0";
+    onEnded();
+  };
+
   const handleTap = () => {
     const v = videoRef.current;
     if (!v) { onSkip(); return; }
@@ -40,7 +49,7 @@ export default function Opening({ phase, failed, onTap, onEnded, onFailed, onSki
         preload="auto"
         disablePictureInPicture
         controls={false}
-        onEnded={onEnded}
+        onEnded={handleEnded}
         onError={onFailed}
       />
       <div className="intro-vignette" aria-hidden="true" />

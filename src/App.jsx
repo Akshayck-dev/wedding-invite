@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, useReducedMotion } from "framer-motion";
 import config from "./config";
 import Opening from "./components/Opening";
@@ -9,8 +9,14 @@ import MusicToggle from "./components/MusicToggle";
 export default function App() {
   const [phase, setPhase] = useState("poster"); // poster | playing | entered
   const [failed, setFailed] = useState(false);
+  const [contentReady, setContentReady] = useState(false);
   const [musicStartSignal, setMusicStartSignal] = useState(0);
   const reduceMotion = useReducedMotion();
+  const contentTimer = useRef(null);
+
+  useEffect(() => () => {
+    if (contentTimer.current) clearTimeout(contentTimer.current);
+  }, []);
 
   // Preload + decode the hero background (exact final video frame) before
   // playback starts, so the ended-crossfade never flashes or jumps.
@@ -28,7 +34,15 @@ export default function App() {
     return () => { document.body.style.overflow = ""; };
   }, [phase]);
 
-  const enter = useCallback(() => setPhase("entered"), []);
+  const enter = useCallback(() => {
+    setPhase((p) => {
+      if (p === "entered") return p;
+      // Mount the heavy sections only AFTER the crossfade finishes,
+      // so the video -> hero handoff (and the name reveal) stays smooth.
+      contentTimer.current = setTimeout(() => setContentReady(true), 780);
+      return "entered";
+    });
+  }, []);
 
   const handleTap = useCallback(() => {
     setMusicStartSignal((n) => n + 1); // same gesture starts the music
@@ -49,7 +63,7 @@ export default function App() {
       <div className="site">
         {/* Hero stays mounted behind the opening video for a seamless handoff */}
         <Hero started={entered} />
-        {entered && <Sections />}
+        {contentReady && <Sections />}
       </div>
 
       <AnimatePresence>

@@ -9,7 +9,7 @@ import config from "../config";
  */
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.13, delayChildren: 0.25 } },
+  show: { transition: { staggerChildren: 0.13, delayChildren: 0.35 } },
 };
 
 const item = {
