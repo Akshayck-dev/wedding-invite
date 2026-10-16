@@ -9,7 +9,7 @@ import config from "../config";
  */
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.13, delayChildren: 0.35 } },
+  show: { transition: { staggerChildren: 0.14, delayChildren: 0.35 } },
 };
 
 const item = {
@@ -21,7 +21,7 @@ export default function Hero({ started }) {
   const { couple, hero } = config;
   return (
     <header
-      className="hero hero-arch"
+      className="hero"
       style={{ backgroundImage: `url(${config.assets.heroFinalFrame})` }}
     >
       <div className="hero-scrim" aria-hidden="true" />
@@ -31,27 +31,35 @@ export default function Hero({ started }) {
         initial="hidden"
         animate={started ? "show" : "hidden"}
       >
+        <motion.p className="hero-bismillah arabic" variants={item}>
+          {hero.calligraphy}
+        </motion.p>
         <motion.p className="hero-kicker" variants={item}>
           {hero.introLine}
         </motion.p>
         <motion.h1 className="script-names hero-names" variants={item}>
           <span>{couple.bride.name}</span>
         </motion.h1>
+        <motion.p className="hero-parents" variants={item}>
+          {couple.bride.family}
+        </motion.p>
         <motion.div className="hero-amp" variants={item} aria-hidden="true">
           <i /><em>&amp;</em><i />
         </motion.div>
         <motion.h1 className="script-names hero-names" variants={item}>
           <span>{couple.groom.name}</span>
         </motion.h1>
+        <motion.p className="hero-parents" variants={item}>
+          {couple.groom.family}
+        </motion.p>
         <motion.p className="hero-invite" variants={item}>
           {hero.inviteLine}
         </motion.p>
-        <motion.div className="hero-bottom" variants={item} aria-hidden="true">
-          <span>{hero.bottomLine}</span>
-          <b>◆</b>
+        <motion.div className="hero-scroll" variants={item} aria-hidden="true">
+          <span>{hero.scrollHint}</span>
+          <i />
         </motion.div>
       </motion.div>
-      <div className="hero-scallop" aria-hidden="true" />
     </header>
   );
 }

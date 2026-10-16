@@ -19,11 +19,11 @@ const config = {
 
   hero: {
     calligraphy: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-    introLine: "Together with our families",
-    inviteLine: "Invite you to share in our joy.",
+    introLine: "WE REQUEST THE HONOUR OF YOUR PRESENCE AT THE NIKAH OF",
+    inviteLine: "AS THEY BEGIN THEIR FOREVER IN FAITH AND LOVE.",
     bottomLine: "A NEW CHAPTER BEGINS",
     dateLine: "Sunday, 15 November 2026",
-    scrollHint: "Scroll to Explore",
+    scrollHint: "SCROLL",
   },
 
   welcome: {
