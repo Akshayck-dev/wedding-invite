@@ -124,70 +124,9 @@ function Gallery() {
   );
 }
 
-/* ---------------- events cartoon slider ---------------- */
-function EventsSlider() {
-  const events = config.events.list.filter((ev) => ev.image);
-  const [idx, setIdx] = useState(0);
-  const timer = useRef(null);
-  const touchX = useRef(null);
-  const goTo = (n) => setIdx(((n % events.length) + events.length) % events.length);
-  const restart = () => {
-    if (timer.current) clearInterval(timer.current);
-    if (events.length > 1)
-      timer.current = setInterval(() => setIdx((i) => (i + 1) % events.length), 5000);
-  };
-  useEffect(() => { restart(); return () => clearInterval(timer.current); }, [events.length]);
-  if (events.length === 0) return null;
-  return (
-    <>
-      <div className="glimpse-slider">
-        <div
-          className="glimpse-track"
-          style={{ transform: `translateX(-${idx * 100}%)` }}
-          onPointerDown={(e) => { touchX.current = e.clientX; }}
-          onPointerUp={(e) => {
-            if (touchX.current === null) return;
-            const dx = e.clientX - touchX.current;
-            touchX.current = null;
-            if (Math.abs(dx) > 40) { goTo(idx + (dx < 0 ? 1 : -1)); restart(); }
-          }}
-        >
-          {events.map((ev) => (
-            <div className="glimpse-slide" key={ev.name}>
-              <img className="glimpse-photo" src={ev.image} alt={`${ev.name} — cartoon illustration`}
-                draggable={false} loading="lazy" />
-              <div className="glimpse-cap">
-                <p className="glimpse-name">{ev.name}</p>
-                <p className="glimpse-date">{ev.date} • {ev.time}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        {events.length > 1 && (
-          <>
-            <button className="carousel-arrow prev" type="button" aria-label="Previous celebration"
-              onClick={() => { goTo(idx - 1); restart(); }}>‹</button>
-            <button className="carousel-arrow next" type="button" aria-label="Next celebration"
-              onClick={() => { goTo(idx + 1); restart(); }}>›</button>
-          </>
-        )}
-      </div>
-      {events.length > 1 && (
-        <div className="carousel-dots" role="tablist" aria-label="Celebration slides">
-          {events.map((ev, i) => (
-            <button key={ev.name} type="button" role="tab" aria-label={`Go to ${ev.name}`}
-              className={i === idx ? "active" : ""}
-              onClick={() => { goTo(i); restart(); }} />
-          ))}
-        </div>
-      )}
-    </>
-  );
-}
-
 /* ---------------- all scrolling sections ---------------- */
 export default function Sections() {
-  const { welcome, dateSection, events, glimpses, gallery, venue, dressCode, rsvp, closing, footer, couple } = config;
+  const { welcome, dateSection, events, gallery, venue, dressCode, rsvp, closing, footer, couple } = config;
   const showGallery = gallery.photos.length > 0;
   const [showCountdown, setShowCountdown] = useState(false);
 
@@ -268,16 +207,6 @@ export default function Sections() {
             ))}
           </div>
           <p className="note-caps">{events.note}</p>
-        </Reveal>
-      </section>
-      <FloralDivider />
-
-      {/* GLIMPSES — cartoon slider of the celebrations */}
-      <section className="ivory-deep section-pad">
-        <Reveal>
-          <p className="eyebrow">{glimpses.eyebrow}</p>
-          <h2 className="script-heading">{glimpses.heading}</h2>
-          <EventsSlider />
         </Reveal>
       </section>
       <FloralDivider />

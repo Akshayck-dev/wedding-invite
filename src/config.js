@@ -57,7 +57,6 @@ const config = {
         venue: "The Grand Palace, Kozhikode",
         mapsUrl: "https://maps.google.com/?q=The+Grand+Palace+Kozhikode+Kerala+India",
         icon: "rings",
-        image: "/assets/events/nikah.jpg",
         highlight: true,
       },
       {
@@ -68,7 +67,6 @@ const config = {
         venue: "Bride's Residence",
         mapsUrl: "https://maps.google.com/?q=Kozhikode+Kerala+India",
         icon: "flower",
-        image: "/assets/events/mehendi.jpg",
       },
       {
         name: "Qawwali Evening",
@@ -78,7 +76,6 @@ const config = {
         venue: "Groom's Residence",
         mapsUrl: "https://maps.google.com/?q=Kozhikode+Kerala+India",
         icon: "music",
-        image: "/assets/events/qawwali.jpg",
       },
       {
         name: "Walima",
@@ -88,15 +85,9 @@ const config = {
         venue: "The Grand Palace, Kozhikode",
         mapsUrl: "https://maps.google.com/?q=The+Grand+Palace+Kozhikode+Kerala+India",
         icon: "cloche",
-        image: "/assets/events/walima.jpg",
       },
     ],
     note: "YOUR PRESENCE WILL MAKE OUR DAYS EVEN MORE SPECIAL.",
-  },
-
-  glimpses: {
-    eyebrow: "GLIMPSES",
-    heading: "Celebrations in colour",
   },
 
   gallery: {
