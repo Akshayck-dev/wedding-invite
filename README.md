@@ -8,8 +8,14 @@ maroon-and-gold curtain-reveal video; tapping/clicking enters the full invitatio
 - `index.html` — opening video intro + invitation sections
 - `styles.css` — maroon & gold theme, responsive
 - `script.js` — intro flow, scratch-to-reveal card, nav, RSVP demo
-- `assets/opening.mp4` — the opening video (tap to play, tap again to enter)
+- `assets/opening.mp4` — the opening video (tap to play, tap again for the couple photo)
 - `assets/poster.jpg` — first-frame poster shown before playback
+- `assets/couple.jpg` — bride & groom photo (optional; a monogram placeholder shows if missing)
+
+## Flow
+
+Tap to open → video plays → the moment it ends the couple's photo appears in a
+gold arch frame with names & date → tap to enter the full invitation.
 
 ## Invitation sections
 

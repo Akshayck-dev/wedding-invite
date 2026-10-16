@@ -33,7 +33,9 @@ img,video{max-width:100%}
 /* ======================= INTRO ======================= */
 .intro{position:fixed;inset:0;z-index:100;background:var(--deep);overflow:hidden;transition:opacity .8s ease}
 .intro.leaving{opacity:0;pointer-events:none}
-.opening-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.opening-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;
+  transition:opacity .8s ease}
+.opening-video.dim{opacity:0}
 .intro-vignette{position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse at center,transparent 55%,rgba(20,4,9,.55) 100%)}
 
@@ -51,8 +53,27 @@ img,video{max-width:100%}
 .veil-tap{font-size:.78rem;letter-spacing:.5em;color:var(--champagne);text-transform:uppercase;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
 
-.intro-cta{position:absolute;left:0;right:0;bottom:9vh;display:flex;justify-content:center;animation:riseIn .8s ease}
-@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* ---------- couple photo reveal (right after the video) ---------- */
+.couple-reveal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:1rem;padding:2rem;text-align:center;cursor:pointer;
+  background:radial-gradient(ellipse at 50% 28%,#4a0715 0%,#1d060d 72%);
+  opacity:0;transition:opacity .9s ease}
+.couple-reveal[hidden]{display:none!important}
+.couple-reveal.in{opacity:1}
+.couple-frame{position:relative;width:min(74vw,330px);aspect-ratio:3/4;overflow:hidden;
+  border-radius:170px 170px 18px 18px;border:1px solid #d4a94e99;
+  box-shadow:0 0 0 6px #20070e,0 0 0 7px #d4a94e55,0 26px 70px #000c,0 0 60px #d4a94e33}
+.couple-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  animation:coupleZoom 14s ease-in-out infinite alternate}
+@keyframes coupleZoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.couple-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:.9rem;
+  background:radial-gradient(ellipse at 50% 22%,#6b1020 0%,#3a0712 78%)}
+.couple-mono{font-family:var(--serif);font-size:3.6rem;color:var(--champagne);letter-spacing:.08em}
+.couple-mono span{color:var(--gold-soft);font-size:2.4rem}
+.couple-placeholder p{font-size:.62rem;letter-spacing:.44em;color:var(--muted)}
+.couple-reveal .couple-names{margin:0}
+.couple-date{font-size:.78rem;letter-spacing:.34em;color:var(--champagne)}
 
 /* ---------- shared gold button ---------- */
 .gold-button{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 2.2rem;border-radius:999px;

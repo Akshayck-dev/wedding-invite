@@ -7,11 +7,15 @@
   var video = document.getElementById("openingVideo");
   var veil = document.getElementById("introVeil");
   var playButton = document.getElementById("playButton");
-  var introCta = document.getElementById("introCta");
-  var enterButton = document.getElementById("enterButton");
+  var coupleReveal = document.getElementById("coupleReveal");
+  var couplePhoto = document.getElementById("couplePhoto");
   var site = document.getElementById("site");
   var entered = false;
   var playing = false;
+  var showingCouple = false;
+
+  // No couple photo file yet -> keep the elegant monogram placeholder behind.
+  couplePhoto.addEventListener("error", function () { couplePhoto.style.display = "none"; });
 
   document.body.classList.add("locked");
 
@@ -37,24 +41,34 @@
   playButton.addEventListener("click", function (e) { e.stopPropagation(); startPlayback(); });
   veil.addEventListener("click", startPlayback);
 
-  // A tap anywhere on the intro once the video is running (or finished) enters the invitation.
-  // The veil handles playback start itself — its taps must not bubble into enter().
+  // The moment the video ends, the bride & groom photo appears — no separate
+  // "open invitation" step. A tap during playback jumps straight to the photo,
+  // and a tap on the photo enters the invitation.
+  function showCouple() {
+    if (entered || showingCouple) return;
+    showingCouple = true;
+    try { video.pause(); } catch (e) {}
+    veil.classList.add("gone");
+    video.classList.add("dim");
+    coupleReveal.hidden = false;
+    requestAnimationFrame(function () { coupleReveal.classList.add("in"); });
+  }
+
   intro.addEventListener("click", function (e) {
     if (entered) return;
-    if (e.target.closest("#introVeil")) return;
-    if (playing || !introCta.hidden) enter();
+    if (e.target.closest("#introVeil")) return; // veil starts playback itself
+    if (showingCouple) { enter(); return; }
+    if (playing) showCouple();
   });
 
   video.addEventListener("ended", function () {
     playing = false;
-    introCta.hidden = false;
+    showCouple();
   });
-  enterButton.addEventListener("click", function (e) { e.stopPropagation(); enter(); });
 
-  // If the video cannot play at all, offer the enter button right away.
+  // If the video cannot play at all, go straight to the photo.
   video.addEventListener("error", function () {
-    veil.classList.add("gone");
-    introCta.hidden = false;
+    showCouple();
   });
 
   /* ---------------- navigation ---------------- */
