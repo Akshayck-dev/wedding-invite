@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import confetti from "canvas-confetti";
 import config from "../config";
 import ScratchCard from "./ScratchCard";
 
@@ -20,6 +21,31 @@ function Reveal({ children, className = "" }) {
       {children}
     </motion.div>
   );
+}
+
+/** Heart-shaped celebration burst in wedding golds + burgundy. */
+const HEART_CONFETTI_PATH =
+  "M50 88 C30 70 10 52 10 30 C10 14 22 6 34 6 C42 6 48 10 50 18 C52 10 58 6 66 6 C78 6 90 14 90 30 C90 52 70 70 50 88 Z";
+
+function celebrate() {
+  try {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  } catch (err) {}
+  let heart = "circle";
+  try {
+    heart = confetti.shapeFromPath({ path: HEART_CONFETTI_PATH });
+  } catch (err) {}
+  const colors = ["#c9a227", "#a67c1a", "#7a1f2b", "#fff8ec", "#e8b4b8"];
+  const shapes = heart === "circle" ? ["circle"] : [heart, "circle"];
+  const base = {
+    colors, shapes,
+    ticks: 230, gravity: 1.05, scalar: 1.05,
+    disableForReducedMotion: true, zIndex: 200,
+  };
+  confetti({ ...base, particleCount: 90, spread: 100, origin: { y: 0.62 } });
+  window.setTimeout(() => confetti({ ...base, particleCount: 55, angle: 60, spread: 60, origin: { x: 0, y: 0.72 } }), 250);
+  window.setTimeout(() => confetti({ ...base, particleCount: 55, angle: 120, spread: 60, origin: { x: 1, y: 0.72 } }), 420);
+  window.setTimeout(() => confetti({ ...base, particleCount: 45, spread: 130, scalar: 0.85, origin: { y: 0.5 } }), 750);
 }
 
 function Divider() {
@@ -180,6 +206,13 @@ function Gallery() {
 export default function Sections() {
   const { welcome, dateSection, events, gallery, venue, dressCode, rsvp, closing, footer, couple } = config;
   const showGallery = gallery.photos.length > 0;
+  const [showCountdown, setShowCountdown] = useState(false);
+
+  // Heart revealed -> celebration, then the countdown makes its entrance.
+  const handleRevealed = useCallback(() => {
+    celebrate();
+    window.setTimeout(() => setShowCountdown(true), 1900);
+  }, []);
 
   return (
     <>
@@ -202,23 +235,32 @@ export default function Sections() {
           <p className="eyebrow">A LITTLE SURPRISE</p>
           <h2 className="script-heading">{dateSection.heading}</h2>
           <Divider />
-          <p className="scratch-hint">Gently scratch the card to reveal our wedding date.</p>
-          <ScratchCard />
+          <p className="scratch-hint">
+            {showCountdown
+              ? "Save the date ♥ — and count down with us below."
+              : "Gently scratch the heart to reveal our wedding date."}
+          </p>
+          <ScratchCard onReveal={handleRevealed} />
         </Reveal>
       </section>
 
-      {/* COUNTDOWN */}
-      <section className="countdown-band">
-        <div className="band-inner">
-          <Reveal>
+      {/* COUNTDOWN — appears after the heart reveal + celebration */}
+      {showCountdown && (
+        <motion.section
+          className="countdown-band"
+          initial={{ opacity: 0, y: 56, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 110, damping: 17 }}
+        >
+          <div className="band-inner">
             <p className="eyebrow light">{dateSection.countdownEyebrow}</p>
             <h2 className="script-heading light">{dateSection.countdownHeading}</h2>
             <Divider />
             <Countdown />
-          </Reveal>
-        </div>
-        <MosqueSilhouette />
-      </section>
+          </div>
+          <MosqueSilhouette />
+        </motion.section>
+      )}
 
       {/* EVENTS */}
       <section className="ivory section-pad">

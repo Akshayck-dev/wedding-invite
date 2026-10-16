@@ -138,24 +138,32 @@ img,video{max-width:100%}
 
 /* ======================= SCRATCH ======================= */
 .scratch-hint{font-size:1rem;font-style:italic;color:var(--ink-soft);margin-bottom:1.4rem}
-.scratch-frame{position:relative;display:inline-block;padding:12px;border:1px solid #b98a3499;
-  background:#fffdf6;box-shadow:0 16px 44px #3a08121f}
-.scratch-frame::before{content:"";position:absolute;inset:5px;border:1px solid #b98a3455;pointer-events:none}
-.corner{position:absolute;width:24px;height:24px;border:0 solid var(--gold);z-index:2}
-.corner.tl{top:-2px;left:-2px;border-top-width:3px;border-left-width:3px}
-.corner.tr{top:-2px;right:-2px;border-top-width:3px;border-right-width:3px}
-.corner.bl{bottom:-2px;left:-2px;border-bottom-width:3px;border-left-width:3px}
-.corner.br{bottom:-2px;right:-2px;border-bottom-width:3px;border-right-width:3px}
-.scratch-wrap{position:relative;width:min(400px,100%);aspect-ratio:16/10;overflow:hidden;background:var(--ivory)}
-.scratch-under{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:.25rem;padding:1rem;
-  background:radial-gradient(ellipse at 50% 30%,#fffdf4,var(--ivory-2))}
-.under-eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.36em;color:var(--gold-deep)}
-.under-date{font-size:clamp(1.6rem,7vw,2.2rem);font-weight:600;color:var(--maroon-900)}
-.under-day{font-size:.8rem;font-weight:600;letter-spacing:.26em;color:var(--ink-soft)}
-#scratchCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;
-  transition:opacity .7s ease}
-#scratchCanvas.gone{opacity:0;pointer-events:none}
+
+/* ---------- Heart scratch card ---------- */
+.heart-stage{position:relative;width:min(320px,80vw);aspect-ratio:100/92;margin:0 auto;
+  touch-action:none;cursor:pointer;
+  filter:drop-shadow(0 18px 34px rgba(58,8,18,.28))}
+.heart-stage.revealed{animation:heartPop .7s ease}
+@keyframes heartPop{0%{transform:scale(1)}35%{transform:scale(1.06)}70%{transform:scale(.985)}100%{transform:scale(1)}}
+.heart-defs{position:absolute;width:0;height:0;overflow:hidden}
+.heart-clip{clip-path:url(#heartClip)}
+.heart-under{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:.3rem;padding:26% 15% 13%;text-align:center;
+  background:radial-gradient(circle at 50% 32%,#fffdf6 0%,#f9efdb 55%,#f0dfba 100%);
+  box-shadow:inset 0 0 0 3px rgba(185,138,52,.55), inset 0 0 44px rgba(185,138,52,.20)}
+.under-eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.32em;color:var(--gold-deep)}
+.under-date{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,6.4vw,2rem);
+  font-weight:700;color:var(--maroon-900);line-height:1.12}
+.under-day{font-size:.72rem;font-weight:700;letter-spacing:.24em;color:var(--ink-soft)}
+.heart-foil{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .7s ease}
+.heart-foil.gone{opacity:0;pointer-events:none}
+.heart-hint{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+  font-size:.66rem;font-weight:700;letter-spacing:.3em;color:#f3e2b3;white-space:nowrap;
+  background:rgba(43,6,13,.55);border:1px solid rgba(201,162,74,.7);border-radius:999px;
+  padding:.55rem 1.1rem .55rem 1.35rem;pointer-events:none;z-index:3;
+  animation:hintPulse 1.8s ease-in-out infinite}
+@keyframes hintPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.92}
+  50%{transform:translate(-50%,-50%) scale(1.06);opacity:1}}
 
 /* ======================= BURGUNDY BANDS ======================= */
 .countdown-band,.closing-band{
