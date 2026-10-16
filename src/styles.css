@@ -148,9 +148,10 @@ img,video{max-width:100%}
 /* ======================= SCRATCH ======================= */
 .scratch-hint{font-size:1rem;font-style:italic;color:var(--ink-soft);margin-bottom:1.4rem}
 
-/* ---------- Heart scratch card ---------- */
+/* ---------- Heart reveal ---------- */
 .heart-stage{position:relative;width:min(320px,80vw);aspect-ratio:100/92;margin:0 auto;
-  touch-action:none;cursor:pointer} /* none = screen never moves mid-scratch */
+  cursor:pointer;-webkit-tap-highlight-color:transparent}
+.heart-stage:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
 /* static soft shadow (cheap) — a live drop-shadow filter repainted on every
    scratch stroke and made both scrolling and scratching feel laggy */
 .heart-stage::before{content:"";position:absolute;left:5%;right:5%;top:9%;bottom:-3%;
@@ -161,27 +162,40 @@ img,video{max-width:100%}
 .heart-defs{position:absolute;width:0;height:0;overflow:hidden}
 .heart-clip{clip-path:url(#heartClip)}
 .heart-under{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:.3rem;padding:26% 15% 13%;text-align:center;
+  justify-content:center;gap:.32rem;padding:24% 14% 12%;text-align:center;
   background:radial-gradient(circle at 50% 32%,#fffdf6 0%,#f9efdb 55%,#f0dfba 100%);
   box-shadow:inset 0 0 0 3px rgba(185,138,52,.55), inset 0 0 44px rgba(185,138,52,.20)}
+.heart-rose-bg{position:absolute;inset:0;display:grid;place-items:center;opacity:.09;
+  pointer-events:none}
+.heart-rose-bg svg{width:76%;height:auto}
 .under-eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.3em;color:var(--gold-deep);
   position:relative;left:.15em} /* optically re-centre tracked text */
+.heart-mini-div{display:flex;align-items:center;gap:.55rem;color:#b98a34;font-size:.62rem;
+  margin:.1rem 0}
+.heart-mini-div i{display:block;width:30px;height:1px;background:linear-gradient(90deg,transparent,#b98a34)}
+.heart-mini-div i:last-child{background:linear-gradient(90deg,#b98a34,transparent)}
 .under-date{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,6.4vw,2rem);
   font-weight:700;color:var(--maroon-900);line-height:1.12}
 .under-date.num{font-size:clamp(1.9rem,8.2vw,2.5rem);letter-spacing:.04em;white-space:nowrap;
   font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1} /* proper 1s, not I-like oldstyle */
 .under-day{font-size:.72rem;font-weight:700;letter-spacing:.24em;color:var(--ink-soft);
   position:relative;left:.12em} /* optically re-centre tracked text */
-.heart-foil{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .7s ease;
-  touch-action:none}
-.heart-foil.gone{opacity:0;pointer-events:none}
-.heart-hint{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
-  font-size:.66rem;font-weight:700;letter-spacing:.3em;color:#f3e2b3;white-space:nowrap;
+/* foil is pure DOM now — melts away on reveal, no canvas, no scroll fights */
+.heart-foil{position:absolute;inset:0;display:grid;place-items:center;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,240,200,.16),transparent 62%),
+    repeating-linear-gradient(115deg,rgba(201,162,74,.15) 0 3px,transparent 3px 26px),
+    linear-gradient(135deg,#7a1626,#3a0812 45%,#5c1220 70%,#2b060d);
+  box-shadow:inset 0 0 0 3px rgba(233,199,102,.92), inset 0 0 0 7px rgba(43,6,13,.55),
+    inset 0 0 70px rgba(0,0,0,.5);
+  transition:opacity .8s ease,transform .8s ease}
+.heart-foil.gone{opacity:0;transform:scale(1.08);pointer-events:none}
+.heart-hint{font-size:.66rem;font-weight:700;letter-spacing:.3em;color:#f3e2b3;white-space:nowrap;
   background:rgba(43,6,13,.55);border:1px solid rgba(201,162,74,.7);border-radius:999px;
-  padding:.55rem 1.1rem .55rem 1.35rem;pointer-events:none;z-index:3;
+  padding:.6rem 1.15rem .6rem 1.45rem;pointer-events:none;
   animation:hintPulse 1.8s ease-in-out infinite}
-@keyframes hintPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.92}
-  50%{transform:translate(-50%,-50%) scale(1.06);opacity:1}}
+@keyframes hintPulse{0%,100%{transform:scale(1);opacity:.92}
+  50%{transform:scale(1.06);opacity:1}}
 
 /* ======================= DARK BANDS ======================= */
 .countdown-band,.closing-band{
@@ -197,7 +211,8 @@ img,video{max-width:100%}
 .count-grid{display:flex;justify-content:center;gap:clamp(1rem,6vw,2.4rem);margin-top:1.8rem}
 .count-cell strong{display:block;font-weight:500;line-height:1;
   font-size:clamp(2.6rem,13vw,4.2rem);color:var(--champagne);
-  font-variant-numeric:tabular-nums;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+  font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"lnum" 1;
+  text-shadow:0 2px 18px rgba(0,0,0,.5)}
 .count-cell span{display:block;margin-top:.55rem;font-size:.62rem;font-weight:600;
   letter-spacing:.3em;color:var(--gold-soft)}
 .closing-text{font-style:italic;font-size:1.08rem;line-height:1.8;color:#e8d3a8;

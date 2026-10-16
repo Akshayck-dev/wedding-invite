@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import config from "../config";
-import ScratchCard from "./ScratchCard";
+import RevealHeart from "./RevealHeart";
 import Petals from "./Petals";
 import FloralDivider from "./FloralDivider";
 
@@ -151,7 +151,7 @@ export default function Sections() {
       </section>
       <FloralDivider />
 
-      {/* SCRATCH */}
+      {/* REVEAL — heart opens on scroll into view (or tap) */}
       <section className="ivory-deep section-pad">
         <Reveal>
           <p className="eyebrow">{dateSection.eyebrow}</p>
@@ -159,29 +159,34 @@ export default function Sections() {
           <p className="scratch-hint">
             {showCountdown
               ? "Save the date ♥ — and count down with us below."
-              : "Gently scratch the heart to reveal our wedding date."}
+              : "The heart opens as you arrive — or tap it."}
           </p>
-          <ScratchCard onReveal={handleRevealed} />
+          <RevealHeart onReveal={handleRevealed} />
         </Reveal>
       </section>
 
-      {/* COUNTDOWN — appears after the heart reveal + celebration */}
-      {showCountdown && (
-        <motion.section
-          className="countdown-band"
-          initial={{ opacity: 0, y: 56 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 110, damping: 17 }}
-        >
-          <FloralDivider className="on-dark" />
-          <div className="band-inner">
-            <p className="eyebrow light">UNTIL WE SAY QUBOOL HAI</p>
-            <h2 className="script-heading light">{dateSection.countdownHeading}</h2>
-            <Countdown />
-          </div>
-          <FloralDivider className="on-dark" />
-        </motion.section>
-      )}
+      {/* COUNTDOWN — blooms open smoothly after the heart reveal + celebration */}
+      <AnimatePresence initial={false}>
+        {showCountdown && (
+          <motion.div
+            key="countdown"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <section className="countdown-band">
+              <FloralDivider className="on-dark" />
+              <div className="band-inner">
+                <p className="eyebrow light">UNTIL WE SAY QUBOOL HAI</p>
+                <h2 className="script-heading light">{dateSection.countdownHeading}</h2>
+                <Countdown />
+              </div>
+              <FloralDivider className="on-dark" />
+            </section>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* FESTIVITIES */}
       <section className="ivory section-pad">
