@@ -206,19 +206,50 @@ img,video{max-width:100%}
 .closing-text{font-style:italic;font-size:1.08rem;line-height:1.8;color:#e8d3a8;
   max-width:28rem;margin:1rem auto 0}
 
-/* ======================= FESTIVITIES ======================= */
-.fest-list{margin-top:.4rem}
-.fest-item{padding:1.5rem 0 .4rem}
-.fest-item:first-child{padding-top:.6rem}
-.fest-name{font-family:var(--script);font-weight:400;font-size:clamp(1.9rem,8.5vw,2.4rem);
-  color:var(--maroon-900);line-height:1.25;margin-bottom:.25rem}
-.fest-date{font-size:.74rem;font-weight:700;letter-spacing:.22em;color:#a31621;
-  text-transform:uppercase}
-.fest-venue{font-style:italic;font-size:1rem;color:var(--ink-soft);margin:.35rem 0 1.15rem}
-.outline-button{display:inline-block;padding:.85rem 1.9rem;border:1px solid #b98a34;
-  border-radius:4px;font-size:.7rem;font-weight:700;letter-spacing:.26em;color:var(--gold-deep);
-  transition:.25s}
-.outline-button:hover{background:#b98a3414}
+/* ======================= FESTIVITIES SLIDER ======================= */
+.fest-section{background:radial-gradient(120% 90% at 50% 0%, #43101c 0%, #2a0a12 55%, #1f060c 100%);
+  padding:3.2rem 0 2.6rem;overflow:hidden}
+.fest-star{text-align:center;color:var(--gold);font-size:.8rem;letter-spacing:0;margin-bottom:.7rem}
+.fest-title{font-family:var(--serif);font-weight:600;color:var(--gold);
+  font-size:clamp(1.05rem,4.6vw,1.35rem);letter-spacing:.4em;text-indent:.4em;text-align:center;
+  margin-bottom:1.6rem}
+.fest-viewport{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:0 calc(50% - 38%);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.fest-viewport::-webkit-scrollbar{display:none}
+.fest-card{position:relative;flex:0 0 76%;scroll-snap-align:center;aspect-ratio:3/4.1;
+  border-radius:14px;overflow:hidden;background:#1c060b;
+  filter:brightness(.55) saturate(.92);transform:scale(.965);
+  transition:filter .45s ease,transform .45s ease,box-shadow .45s ease;
+  box-shadow:0 18px 44px rgba(0,0,0,.4)}
+.fest-card.active{filter:none;transform:none;
+  box-shadow:0 0 0 1.5px #b98a34,0 26px 60px rgba(0,0,0,.5)}
+.fest-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fest-card-shade{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,4,8,.42) 0%,transparent 30%,transparent 46%,
+  rgba(20,4,8,.72) 100%)}
+.fest-card-body{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:1.5rem 1.2rem 1.3rem}
+.fest-card-name{font-family:var(--script);font-weight:400;color:#f8e9c4;
+  font-size:clamp(1.9rem,8.4vw,2.5rem);line-height:1.2;margin-top:.4rem;
+  text-shadow:0 2px 14px rgba(15,2,5,.85)}
+.fest-card-tag{font-style:italic;font-size:.86rem;color:#f3ddab;opacity:.94;margin-top:.3rem;
+  text-shadow:0 1px 8px rgba(15,2,5,.8)}
+.fest-card-meta{margin-top:auto;padding-top:1rem}
+.fest-card-meta p{font-size:.68rem;font-weight:600;letter-spacing:.18em;color:#f6e3ac;
+  text-transform:uppercase;line-height:1.9;text-shadow:0 1px 8px rgba(15,2,5,.85)}
+.fest-card-maps{display:inline-block;margin-top:.7rem;padding:.6rem 1.4rem;border:1px solid #d9ab4ecc;
+  border-radius:999px;font-size:.62rem;font-weight:700;letter-spacing:.24em;color:#f8e9c4;
+  background:#2a0a1280;backdrop-filter:blur(4px)}
+.fest-nav{display:flex;align-items:center;justify-content:center;gap:1.4rem;margin-top:1.4rem}
+.fest-arrow{background:none;border:none;color:var(--gold);font-size:1.7rem;line-height:1;
+  padding:.3rem .6rem;cursor:pointer;opacity:.9}
+.fest-dots{display:flex;align-items:center;gap:.5rem}
+.fest-dot{width:7px;height:7px;border-radius:999px;border:none;background:#b98a3455;
+  padding:0;cursor:pointer;transition:.3s}
+.fest-dot.active{width:26px;background:var(--gold)}
+.fest-swipe{text-align:center;font-size:.62rem;font-weight:600;letter-spacing:.34em;
+  text-indent:.34em;color:#d9ab4e;opacity:.75;margin-top:1rem}
+.fest-note{margin-top:1.6rem}
 
 /* ======================= GALLERY ======================= */
 .carousel{position:relative;overflow:hidden;border-radius:10px;max-width:26rem;margin:0 auto;

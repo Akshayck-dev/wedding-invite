@@ -124,6 +124,80 @@ function Gallery() {
   );
 }
 
+/* ---------------- festivities card slider ---------------- */
+function FestivitiesSlider() {
+  const events = config.events.list;
+  const viewRef = useRef(null);
+  const [idx, setIdx] = useState(0);
+  const raf = useRef(0);
+  const step = () => {
+    const v = viewRef.current;
+    if (!v) return 1;
+    const card = v.querySelector(":scope > .fest-card");
+    if (!card) return v.clientWidth * 0.8;
+    const gap = parseFloat(getComputedStyle(v).columnGap || 0);
+    return card.offsetWidth + gap;
+  };
+  const goTo = (n) => {
+    const v = viewRef.current;
+    if (!v) return;
+    const t = Math.max(0, Math.min(events.length - 1, n));
+    v.scrollTo({ left: t * step(), behavior: "smooth" });
+  };
+  const onScroll = () => {
+    cancelAnimationFrame(raf.current);
+    raf.current = requestAnimationFrame(() => {
+      const v = viewRef.current;
+      if (!v) return;
+      const s = step();
+      if (!s) return;
+      setIdx(Math.max(0, Math.min(events.length - 1, Math.round(v.scrollLeft / s))));
+    });
+  };
+  useEffect(() => () => cancelAnimationFrame(raf.current), []);
+  if (events.length === 0) return null;
+  return (
+    <>
+      <div className="fest-viewport" ref={viewRef} onScroll={onScroll}>
+        {events.map((ev, i) => (
+          <article className={`fest-card${i === idx ? " active" : ""}`} key={ev.name}>
+            <img className="fest-card-img" src={ev.image} alt={ev.name}
+              draggable={false} loading={i === 0 ? "eager" : "lazy"} />
+            <div className="fest-card-shade" aria-hidden="true" />
+            <div className="fest-card-body">
+              <h3 className="fest-card-name">{ev.name}</h3>
+              <p className="fest-card-tag">{ev.tagline}</p>
+              <div className="fest-card-meta">
+                <p>{ev.date}</p>
+                <p>{ev.time}</p>
+                <p>{ev.venue}</p>
+              </div>
+              <a className="fest-card-maps" href={ev.mapsUrl} target="_blank" rel="noreferrer">
+                VIEW ON MAP
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="fest-nav">
+        <button className="fest-arrow" type="button" aria-label="Previous celebration"
+          onClick={() => goTo(idx - 1)}>‹</button>
+        <div className="fest-dots" role="tablist" aria-label="Celebration slides">
+          {events.map((ev, i) => (
+            <button key={ev.name} type="button" role="tab" aria-selected={i === idx}
+              aria-label={`Go to ${ev.name}`}
+              className={`fest-dot${i === idx ? " active" : ""}`}
+              onClick={() => goTo(i)} />
+          ))}
+        </div>
+        <button className="fest-arrow" type="button" aria-label="Next celebration"
+          onClick={() => goTo(idx + 1)}>›</button>
+      </div>
+      <p className="fest-swipe">SWIPE TO EXPLORE</p>
+    </>
+  );
+}
+
 /* ---------------- all scrolling sections ---------------- */
 export default function Sections() {
   const { welcome, dateSection, events, gallery, venue, dressCode, rsvp, closing, footer, couple } = config;
@@ -188,25 +262,13 @@ export default function Sections() {
         )}
       </AnimatePresence>
 
-      {/* FESTIVITIES */}
-      <section className="ivory section-pad">
+      {/* FESTIVITIES — dark card slider */}
+      <section className="fest-section">
         <Reveal>
-          <p className="eyebrow">THE FESTIVITIES</p>
-          <h2 className="script-heading">Days filled with joy</h2>
-          <div className="fest-list">
-            {events.list.map((ev, i) => (
-              <div className="fest-item" key={ev.name}>
-                {i > 0 && <FloralDivider className="mini" />}
-                <h3 className="fest-name">{ev.name}</h3>
-                <p className="fest-date">{ev.date} • {ev.time}</p>
-                <p className="fest-venue">{ev.venue}</p>
-                <a className="outline-button" href={ev.mapsUrl} target="_blank" rel="noreferrer">
-                  VIEW ON GOOGLE MAPS
-                </a>
-              </div>
-            ))}
-          </div>
-          <p className="note-caps">{events.note}</p>
+          <p className="fest-star" aria-hidden="true">✦</p>
+          <h2 className="fest-title">{events.eyebrow}</h2>
+          <FestivitiesSlider />
+          <p className="note-caps light fest-note">{events.note}</p>
         </Reveal>
       </section>
       <FloralDivider />
