@@ -156,6 +156,12 @@ export default function ScratchCard({ onReveal }) {
   }, []);
 
   const d = config.dateSection;
+  // Numeric date (15 • 11 • 2026) derived from the ISO date — compact enough
+  // to sit comfortably inside the heart.
+  const numericDate = (() => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d.iso || "");
+    return m ? `${parseInt(m[3], 10)} • ${parseInt(m[2], 10)} • ${m[1]}` : d.revealDate;
+  })();
   return (
     <div className={`heart-stage${revealed ? " revealed" : ""}`} ref={wrapRef}>
       <svg className="heart-defs" aria-hidden="true" focusable="false">
@@ -167,7 +173,7 @@ export default function ScratchCard({ onReveal }) {
       </svg>
       <div className="heart-under heart-clip">
         <p className="under-eyebrow">{d.revealTitle}</p>
-        <p className="under-date">{d.revealDate}</p>
+        <p className="under-date num">{numericDate}</p>
         <p className="under-day">{d.revealDay}</p>
       </div>
       <canvas
