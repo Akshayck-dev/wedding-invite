@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#2a0a12" />
-  <meta name="description" content="A cinematic maroon and gold wedding invitation — Amina & Fahad." />
+  <meta name="theme-color" content="#23050b" />
+  <meta name="description" content="A maroon and gold nikah invitation — Amina & Fahad." />
   <title>Amina &amp; Fahad — Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -19,7 +19,6 @@
            playsinline preload="auto" disablepictureinpicture></video>
     <div class="intro-vignette" aria-hidden="true"></div>
 
-    <!-- tap-to-play veil -->
     <div id="introVeil" class="intro-veil">
       <p class="veil-eyebrow">✦ &nbsp;A CELEBRATION OF LOVE &amp; BLESSINGS&nbsp; ✦</p>
       <button id="playButton" class="play-button" type="button" aria-label="Play opening video">
@@ -39,7 +38,7 @@
         </div>
         <img id="couplePhoto" src="assets/couple.jpg" alt="Bride and groom" />
       </div>
-      <h2 class="couple-names small"><span>Amina</span><em>&amp;</em><span>Fahad</span></h2>
+      <h2 class="script-names small"><span>Amina</span><em>&amp;</em><span>Fahad</span></h2>
       <p class="couple-date">✦&nbsp;&nbsp;15 · 11 · 2026&nbsp;&nbsp;✦</p>
       <p class="veil-tap">TAP TO ENTER</p>
     </div>
@@ -48,140 +47,181 @@
   <!-- ======================= INVITATION ======================= -->
   <div id="site" class="site" hidden>
 
-    <header class="site-header">
-      <a class="brand" href="#home" data-go="home">
-        <span class="brand-mark">A<span>&amp;</span>F</span>
-        <span class="brand-label">THE WEDDING OF AMINA &amp; FAHAD</span>
-      </a>
-      <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="siteNav" class="nav">
-        <button type="button" data-go="story">Our Story</button>
-        <button type="button" data-go="celebration">Celebration</button>
-        <button type="button" data-go="details">Details</button>
-        <button type="button" data-go="rsvp">RSVP</button>
-      </nav>
-    </header>
-
+    <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-pattern" aria-hidden="true"></div>
       <div class="hero-content reveal">
-        <p class="eyebrow"><span></span> A NEW CHAPTER BEGINS <span></span></p>
         <p class="arabic hero-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-        <h1 class="couple-names"><span>Amina</span><em>&amp;</em><span>Fahad</span></h1>
-        <p class="hero-subtitle">Together in faith, forever in love</p>
-        <div class="hero-date">✦&nbsp;&nbsp;SUNDAY, 15 NOVEMBER 2026&nbsp;&nbsp;✦</div>
-        <button class="scroll-cue" type="button" data-go="reveal" aria-label="Scroll down">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg>
-        </button>
+        <p class="hero-line">WE REQUEST THE HONOUR OF YOUR<br />PRESENCE AT THE NIKAH OF</p>
+        <h1 class="script-names"><span>Amina</span></h1>
+        <p class="parent-line">DAUGHTER OF</p>
+        <p class="parent-names">[Bride's parents' names]</p>
+        <div class="amp" aria-hidden="true">&amp;</div>
+        <h1 class="script-names"><span>Fahad</span></h1>
+        <p class="parent-line">SON OF</p>
+        <p class="parent-names">[Groom's parents' names]</p>
+        <p class="hero-dua">AS THEY BEGIN THEIR FOREVER<br />IN FAITH AND LOVE.</p>
+        <div class="scroll-cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
       </div>
-      <div class="hero-side-note" aria-hidden="true">A DAY TO REMEMBER · 2026</div>
-      <div class="hero-bottom-line" aria-hidden="true"></div>
     </section>
 
-    <section class="scratch-section section-pad" id="reveal">
+    <!-- A BLESSED BEGINNING -->
+    <section class="cream section-pad" id="beginning">
       <div class="reveal">
-        <p class="section-label">✦&nbsp;&nbsp;SAVE THE DATE&nbsp;&nbsp;✦</p>
-        <h2 id="scratchTitle" class="scratch-title">SCRATCH TO REVEAL</h2>
-        <div class="scratch-wrap">
-          <div class="scratch-under">
-            <p class="under-eyebrow">OUR WEDDING DAY</p>
-            <p class="under-date">15 · 11 · 2026</p>
-            <p class="under-day">SUNDAY</p>
-            <p class="under-note">✦&nbsp;with the blessings of our families&nbsp;✦</p>
+        <h2 class="script-heading">A Blessed Beginning</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <p class="lede">With hearts full of gratitude, we warmly invite you to join us as we celebrate this beautiful beginning with the love, prayers, and blessings of our families.</p>
+        <p class="signature">Amina <span>&amp;</span> Fahad</p>
+        <div class="floral-rule" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- SCRATCH TO REVEAL -->
+    <section class="cream-deep section-pad" id="reveal">
+      <div class="reveal">
+        <p class="eyebrow">A DATE TO HOLD CLOSE</p>
+        <h2 class="script-heading">Scratch to Reveal</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <div class="scratch-frame">
+          <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span>
+          <span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+          <div class="scratch-wrap">
+            <div class="scratch-under">
+              <p class="under-eyebrow">YOU'RE INVITED!</p>
+              <p class="under-date">15 November 2026</p>
+              <p class="under-day">Sunday &nbsp;•&nbsp; 10:30 AM</p>
+            </div>
+            <canvas id="scratchCanvas" aria-label="Scratch card — drag to reveal the wedding date"></canvas>
           </div>
-          <canvas id="scratchCanvas" aria-label="Scratch card — drag to reveal the wedding date"></canvas>
         </div>
       </div>
     </section>
 
-    <section class="story section-pad" id="story">
-      <div class="section-label reveal">01 / OUR STORY</div>
-      <div class="story-grid">
-        <div class="story-art reveal">
-          <div class="story-arch">
-            <div class="story-moon" aria-hidden="true">☾</div>
-            <div class="story-monogram">A<span>&amp;</span>F</div>
-            <p>MADE FOR EACH OTHER</p>
+    <!-- OUR STORY -->
+    <section class="cream section-pad story-section" id="story">
+      <div class="petals" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">OUR STORY</p>
+        <h2 class="script-heading">Moments, softly held</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <div class="carousel" id="carousel">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide">
+              <div class="slide-frame"><span class="slide-mono">A<span>&amp;</span>F</span><p>A quiet promise</p></div>
+            </div>
+            <div class="carousel-slide">
+              <div class="slide-frame"><span class="slide-moon">☾</span><p>Two souls, one journey</p></div>
+            </div>
+            <div class="carousel-slide">
+              <div class="slide-frame"><span class="slide-star">✦</span><p>Moments, softly held</p></div>
+            </div>
           </div>
-          <span class="story-stamp">EST. 2026</span>
+          <button class="carousel-arrow prev" id="carPrev" aria-label="Previous photo" type="button">‹</button>
+          <button class="carousel-arrow next" id="carNext" aria-label="Next photo" type="button">›</button>
         </div>
-        <div class="story-text reveal">
-          <p class="eyebrow">BISMILLAH IR-RAHMAN IR-RAHEEM</p>
-          <h2>A beautiful beginning,<br /><em>blessed by love.</em></h2>
-          <div class="small-ornament" aria-hidden="true">✦ ───────── ✦</div>
-          <p class="body-copy">With grateful hearts and the blessings of our families, we invite you to share in a day filled with faith, joy and the promise of forever.</p>
-          <p class="body-copy">Your presence and prayers will make our celebration even more meaningful as we begin this new chapter together.</p>
-          <div class="signature">With love, <span>Amina &amp; Fahad</span></div>
+        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Story photos"></div>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section class="countdown-band" id="countdown">
+      <div class="reveal">
+        <p class="eyebrow light">UNTIL WE SAY QUBOOL HAI</p>
+        <h2 class="script-heading light">Counting every heartbeat</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <div class="count-grid">
+          <div><strong id="cdDays">00</strong><span>DAYS</span></div>
+          <div><strong id="cdHours">00</strong><span>HOURS</span></div>
+          <div><strong id="cdMins">00</strong><span>MINUTES</span></div>
+          <div><strong id="cdSecs">00</strong><span>SECONDS</span></div>
         </div>
       </div>
     </section>
 
-    <section class="celebration section-pad" id="celebration">
-      <div class="section-label reveal">02 / THE CELEBRATION</div>
-      <div class="center-heading reveal">
-        <p class="eyebrow">A DAY FULL OF BLESSINGS</p>
-        <h2>Join us for our <em>special day</em></h2>
-        <p>Every moment is more beautiful when shared with you.</p>
-      </div>
-      <div class="event-list">
-        <article class="event-row reveal">
-          <div class="event-index">01</div>
-          <div class="event-time">10:30 AM</div>
-          <div class="event-main"><h3>Welcome &amp; Duas</h3><p>A warm welcome with family and friends</p></div>
-          <span class="event-star" aria-hidden="true">✦</span>
-        </article>
-        <article class="event-row reveal">
-          <div class="event-index">02</div>
-          <div class="event-time">11:30 AM</div>
-          <div class="event-main"><h3>Nikah Ceremony</h3><p>A beautiful beginning, blessed with prayers</p></div>
-          <span class="event-star" aria-hidden="true">✦</span>
-        </article>
-        <article class="event-row reveal">
-          <div class="event-index">03</div>
-          <div class="event-time">12:30 PM</div>
-          <div class="event-main"><h3>Celebration &amp; Lunch</h3><p>Gather, celebrate and share a meal</p></div>
-          <span class="event-star" aria-hidden="true">✦</span>
-        </article>
-      </div>
-    </section>
-
-    <section class="details section-pad" id="details">
-      <div class="section-label reveal">03 / THE DETAILS</div>
-      <div class="details-grid">
-        <div class="details-copy reveal">
-          <p class="eyebrow">SAVE THE DATE</p>
-          <h2>We can't wait<br />to see <em>you.</em></h2>
-          <div class="detail-item">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            <div><span>DATE</span><strong>Sunday, 15 November 2026</strong></div>
-          </div>
-          <div class="detail-item">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            <div><span>TIME</span><strong>10:30 AM onwards</strong></div>
-          </div>
-          <div class="detail-item">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <div><span>VENUE</span><strong>The Grand Palace</strong><small>Kozhikode, Kerala, India</small></div>
-          </div>
-        </div>
-        <div class="map-card reveal">
-          <iframe title="Wedding venue map — The Grand Palace, Kozhikode"
-                  src="https://maps.google.com/maps?q=Kozhikode,%20Kerala,%20India&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-          <a class="gold-button map-btn" href="https://maps.google.com/?q=The+Grand+Palace+Kozhikode+Kerala+India" target="_blank" rel="noreferrer">GET DIRECTIONS <span aria-hidden="true">→</span></a>
+    <!-- THE CELEBRATION -->
+    <section class="cream section-pad" id="celebration">
+      <div class="reveal">
+        <p class="eyebrow">THE CELEBRATION</p>
+        <h2 class="script-heading">Our Nikah day</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <div class="timeline">
+          <div class="t-row"><span class="t-time">10:30 AM</span><div class="t-main"><h3>Guest Arrival</h3><p>A warm welcome with family and friends</p></div></div>
+          <div class="t-row"><span class="t-time">11:30 AM</span><div class="t-main"><h3>Nikah Ceremony</h3><p>Solemnization &amp; duas</p></div></div>
+          <div class="t-row"><span class="t-time">12:30 PM</span><div class="t-main"><h3>Blessings</h3><p>Family greetings &amp; photographs</p></div></div>
+          <div class="t-row"><span class="t-time">01:00 PM</span><div class="t-main"><h3>Dinner</h3><p>A feast shared with love</p></div></div>
         </div>
       </div>
     </section>
 
-    <section class="rsvp section-pad" id="rsvp">
+    <!-- THE VENUE -->
+    <section class="cream section-pad" id="venue">
+      <div class="reveal">
+        <div class="venue-card">
+          <p class="eyebrow light">THE VENUE</p>
+          <h2 class="script-heading light">The Grand Palace</h2>
+          <p class="venue-addr">Kozhikode, Kerala, India</p>
+          <a class="outline-gold" href="https://maps.google.com/?q=The+Grand+Palace+Kozhikode+Kerala+India" target="_blank" rel="noreferrer">VIEW ON GOOGLE MAPS</a>
+          <div class="venue-map">
+            <iframe title="Wedding venue map — The Grand Palace, Kozhikode"
+                    src="https://maps.google.com/maps?q=Kozhikode,%20Kerala,%20India&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRESS CODE -->
+    <section class="cream section-pad" id="dresscode">
+      <div class="reveal">
+        <p class="eyebrow">DRESS CODE</p>
+        <h2 class="script-heading">Festive Formal</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <p class="lede small">Traditional or formal attire is encouraged. Sarees, lehengas, anarkalis, sherwanis, kurtas, suits, and formal dresses are all welcome. We kindly ask guests to avoid overly casual attire and white or ivory.</p>
+        <div class="palette" aria-hidden="true">
+          <span style="--c:#3a0812"></span><span style="--c:#6b1020"></span><span style="--c:#a31621"></span><span style="--c:#c9a24a"></span><span style="--c:#f4ead3"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE FESTIVITIES -->
+    <section class="cream-deep section-pad" id="festivities">
+      <div class="reveal">
+        <p class="eyebrow">THE FESTIVITIES</p>
+        <h2 class="script-heading">Days filled with joy</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <div class="fest-grid">
+          <article class="fest-card">
+            <h3>Mehendi</h3>
+            <p class="fest-when">FRIDAY, 13 NOV &nbsp;•&nbsp; 4:00 PM</p>
+            <p class="fest-where">Bride's Residence</p>
+            <a class="text-btn" href="https://maps.google.com/?q=Kozhikode+Kerala" target="_blank" rel="noreferrer">VIEW ON GOOGLE MAPS</a>
+          </article>
+          <article class="fest-card">
+            <h3>Qawwali Evening</h3>
+            <p class="fest-when">SATURDAY, 14 NOV &nbsp;•&nbsp; 7:00 PM</p>
+            <p class="fest-where">Groom's Residence</p>
+            <a class="text-btn" href="https://maps.google.com/?q=Kozhikode+Kerala" target="_blank" rel="noreferrer">VIEW ON GOOGLE MAPS</a>
+          </article>
+          <article class="fest-card">
+            <h3>Walima</h3>
+            <p class="fest-when">MONDAY, 16 NOV &nbsp;•&nbsp; 7:30 PM</p>
+            <p class="fest-where">The Grand Palace, Kozhikode</p>
+            <a class="text-btn" href="https://maps.google.com/?q=The+Grand+Palace+Kozhikode+Kerala" target="_blank" rel="noreferrer">VIEW ON GOOGLE MAPS</a>
+          </article>
+        </div>
+        <p class="placeholder-note">Pre-wedding event details are examples — share the real ones to update.</p>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="cream section-pad" id="rsvp">
       <div class="rsvp-card reveal">
-        <div class="section-label">04 / RSVP</div>
-        <p class="eyebrow">KINDLY REPLY BY 01 NOVEMBER</p>
-        <h2>Will you <em>join us?</em></h2>
-        <p class="rsvp-intro">Please let us know if you can celebrate this special day with us.</p>
+        <p class="eyebrow">RSVP</p>
+        <h2 class="script-heading">Will you join us?</h2>
+        <p class="rsvp-intro">Kindly reply by 01 November — your presence would mean the world to us.</p>
         <div id="rsvpSuccess" class="success-message" hidden>
           <p class="success-heart" aria-hidden="true">♥</p>
           <h3>Thank you, <span id="rsvpNameEcho">dear guest</span>!</h3>
@@ -212,14 +252,23 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="footer-motif" aria-hidden="true">✦</div>
-      <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      <h2 class="couple-names small">Amina <em>&amp;</em> Fahad</h2>
-      <p>May Allah bless this union with love, peace and happiness.</p>
-      <div class="footer-line" aria-hidden="true"></div>
-      <span>WITH LOVE &amp; GRATITUDE · 15 NOVEMBER 2026</span>
-      <button class="back-top" type="button" data-go="home">↑&nbsp;&nbsp;BACK TO TOP</button>
+    <!-- YOUR PRESENCE -->
+    <section class="presence-band section-pad">
+      <div class="reveal">
+        <p class="eyebrow light">WITH ALL OUR HEARTS</p>
+        <h2 class="script-heading light">Your presence is our present</h2>
+        <div class="divider" aria-hidden="true"><span>✦</span></div>
+        <p class="presence-text">Your love, blessings, and presence are the greatest gifts we could ever ask for.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer cream">
+      <div class="footer-arch reveal">
+        <h2 class="script-heading">We can't wait to<br />celebrate with you.</h2>
+        <p class="signature">Amina <span>&amp;</span> Fahad</p>
+        <p class="footer-meta">15 NOVEMBER 2026 &nbsp;•&nbsp; THE GRAND PALACE</p>
+      </div>
     </footer>
 
   </div>
