@@ -49,6 +49,9 @@ export default function Hero({ started }) {
         <motion.p className="parent-line" variants={item}>SON OF</motion.p>
         <motion.p className="parent-names" variants={item}>{couple.groom.family}</motion.p>
         <motion.p className="hero-dua" variants={item}>{hero.inviteLine}</motion.p>
+        <motion.div variants={item}>
+          <span className="hero-date">{hero.dateLine}</span>
+        </motion.div>
         <motion.div className="scroll-cue" variants={item} aria-hidden="true">
           <span>{hero.scrollHint}</span>
           <i />

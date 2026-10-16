@@ -21,6 +21,7 @@ const config = {
     calligraphy: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
     introLine: "Together with our families",
     inviteLine: "Invite you to celebrate their wedding",
+    dateLine: "Sunday, 15 November 2026",
     scrollHint: "Scroll to Explore",
   },
 
@@ -100,8 +101,14 @@ const config = {
   dressCode: {
     eyebrow: "DRESS CODE",
     heading: "Festive Formal",
-    text: "Traditional or formal attire is encouraged. Sarees, lehengas, anarkalis, sherwanis, kurtas, suits, and formal dresses are all welcome. We kindly ask guests to avoid overly casual attire and white or ivory.",
-    palette: ["#3a0812", "#6b1020", "#a31621", "#c9a24a", "#f4ead3"],
+    text: "Traditional or formal attire is encouraged — sarees, lehengas, anarkalis, sherwanis, kurtas, suits and formal dresses are all welcome. We kindly ask guests to avoid overly casual attire and white or ivory.",
+    palette: [
+      { color: "#3a0812", label: "Burgundy" },
+      { color: "#6b1020", label: "Maroon" },
+      { color: "#a31621", label: "Crimson" },
+      { color: "#c9a24a", label: "Antique Gold" },
+      { color: "#f4ead3", label: "Ivory" },
+    ],
   },
 
   rsvp: {

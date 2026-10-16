@@ -38,7 +38,7 @@ export default function ScratchCard() {
           ctx.beginPath(); ctx.arc(xx, yy, Math.max(1.5, w * 0.004), 0, 7); ctx.fill();
         }
       ctx.fillStyle = "rgba(243,226,179,0.92)";
-      ctx.font = `400 ${Math.round(h * 0.12)}px Jost, sans-serif`;
+      ctx.font = `600 ${Math.round(h * 0.13)}px 'Cormorant Garamond', Georgia, serif`;
       ctx.textAlign = "center"; ctx.textBaseline = "middle";
       ctx.fillText("✦  SCRATCH HERE  ✦", w / 2, h / 2);
     };
