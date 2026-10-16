@@ -55,10 +55,6 @@ export default function Hero({ started }) {
         <motion.p className="hero-invite" variants={item}>
           {hero.inviteLine}
         </motion.p>
-        <motion.div className="hero-scroll" variants={item} aria-hidden="true">
-          <span>{hero.scrollHint}</span>
-          <i />
-        </motion.div>
       </motion.div>
     </header>
   );
