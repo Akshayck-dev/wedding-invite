@@ -164,11 +164,14 @@ img,video{max-width:100%}
   justify-content:center;gap:.3rem;padding:26% 15% 13%;text-align:center;
   background:radial-gradient(circle at 50% 32%,#fffdf6 0%,#f9efdb 55%,#f0dfba 100%);
   box-shadow:inset 0 0 0 3px rgba(185,138,52,.55), inset 0 0 44px rgba(185,138,52,.20)}
-.under-eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.3em;color:var(--gold-deep)}
+.under-eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.3em;color:var(--gold-deep);
+  position:relative;left:.15em} /* optically re-centre tracked text */
 .under-date{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,6.4vw,2rem);
   font-weight:700;color:var(--maroon-900);line-height:1.12}
-.under-date.num{font-size:clamp(1.9rem,8.2vw,2.5rem);letter-spacing:.04em;white-space:nowrap}
-.under-day{font-size:.72rem;font-weight:700;letter-spacing:.24em;color:var(--ink-soft)}
+.under-date.num{font-size:clamp(1.9rem,8.2vw,2.5rem);letter-spacing:.04em;white-space:nowrap;
+  font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1} /* proper 1s, not I-like oldstyle */
+.under-day{font-size:.72rem;font-weight:700;letter-spacing:.24em;color:var(--ink-soft);
+  position:relative;left:.12em} /* optically re-centre tracked text */
 .heart-foil{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .7s ease}
 .heart-foil.gone{opacity:0;pointer-events:none}
 .heart-hint{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
