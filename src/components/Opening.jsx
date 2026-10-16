@@ -55,7 +55,19 @@ export default function Opening({ phase, failed, onTap, onEnded, onFailed, onSki
       <div className="intro-vignette" aria-hidden="true" />
 
       {phase === "poster" && !failed && (
-        <div className="intro-veil" onClick={handleTap}>
+        <div
+          className="intro-veil"
+          onClick={handleTap}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleTap();
+            }
+          }}
+          tabIndex={0}
+          role="button"
+          aria-label="Tap to open the invitation"
+        >
           <img
             className="veil-poster"
             src={config.assets.poster}
@@ -65,13 +77,7 @@ export default function Opening({ phase, failed, onTap, onEnded, onFailed, onSki
           />
           <div className="veil-content">
             <p className="veil-eyebrow">✦ &nbsp;A CELEBRATION OF LOVE &amp; BLESSINGS&nbsp; ✦</p>
-            <button className="play-button" type="button" aria-label="Play opening video">
-              <span className="play-ring" />
-              <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <p className="veil-tap">TAP TO OPEN</p>
+          <p className="veil-tap">TAP TO OPEN</p>
           </div>
         </div>
       )}
