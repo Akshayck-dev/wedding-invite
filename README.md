@@ -1,46 +1,54 @@
-# Maroon & Gold Wedding Invitation
+# Maroon & Gold Nikah Invitation (React)
 
-A plain HTML/CSS/JS (no framework) wedding invitation. Opens with a cinematic
-maroon-and-gold curtain-reveal video; tapping/clicking enters the full invitation.
-
-## Structure
-
-- `index.html` — opening video intro + invitation sections
-- `styles.css` — maroon & gold theme, responsive
-- `script.js` — intro flow, scratch-to-reveal card, nav, RSVP demo
-- `assets/opening.mp4` — the opening video (tap to play, tap again for the couple photo)
-- `assets/poster.jpg` — first-frame poster shown before playback
-- `assets/couple.jpg` — bride & groom photo (optional; a monogram placeholder shows if missing)
+A responsive React + Vite + Framer Motion wedding invitation built around the
+opening animation video.
 
 ## Flow
 
-Tap to open → video plays → the moment it ends the couple's photo appears in a
-gold arch frame with names & date → tap to enter the full invitation.
+1. Full-screen poster (first video frame) + "Tap to Open".
+2. Tap → video plays once, inline, no controls; optional background music starts
+   from the same gesture. Scrolling is locked.
+3. On video `ended`, a crossfade reveals the invitation hero — mounted behind
+   the video from the start, using the video's exact final frame as its
+   background, so the handoff is seamless (never fades through black).
+4. Scrolling unlocks; the invitation sections follow.
 
-## Invitation sections
+Fallbacks: playback failure → visible "Open Invitation" button;
+`prefers-reduced-motion` → skip straight to the invitation.
 
-Hero (bride & groom names) → scratch-to-reveal save-the-date card → Our Story →
-Celebration timeline → Details with embedded venue map → RSVP (demo form, not stored) → footer.
+## Structure
+
+- `index.html` — Vite entry
+- `src/main.jsx`, `src/App.jsx` — orchestration (poster → playing → entered)
+- `src/config.js` — **all wedding details, links and asset paths live here**
+- `src/components/Opening.jsx` — poster + video overlay
+- `src/components/Hero.jsx` — final-frame hero, staggered text reveal
+- `src/components/Sections.jsx` — welcome, scratch date + countdown, events,
+  gallery, venue + map, dress code, WhatsApp RSVP, closing, footer
+- `src/components/ScratchCard.jsx` — canvas scratch-to-reveal
+- `src/components/MusicToggle.jsx` — fixed round music toggle
+- `src/styles.css` — theme
+- `public/assets/` — served at `/assets/...`:
+  - `opening.mp4` — the opening animation video
+  - `opening-poster.jpg` — exact first frame
+  - `hero-final-frame.jpg` — exact final frame (hero background)
+  - `music.mp3` — optional; add the file to enable background music
 
 ## Run locally
 
-Any static server works:
-
 ```bash
-python3 -m http.server 8000
+npm install
+npm run build   # or npx vite --host for dev
 ```
 
-Open http://localhost:8000
+Any static server can serve `dist/` (e.g. `python3 -m http.server`).
 
 ## Deploy
 
-Static hosting — no build step. The Vercel project serves the repo directly
-(manual `create_deployment` from `main`, project is not Git-linked).
+Vercel project `wedding-invite` (NOT Git-linked — manual `create_deployment`
+from `main` with the Vite framework preset; it builds from source).
 
 ## Customize
 
-- Names: search `index.html` for `Amina` / `Fahad` (currently placeholders).
-- Date/venue: `index.html` (hero, scratch card, details) — 15 November 2026, The Grand Palace, Kozhikode.
-- Venue map: the `iframe` src and GET DIRECTIONS link in the Details section.
-- Opening video: replace `assets/opening.mp4` (+ `assets/poster.jpg`).
-- Google Fonts require internet access.
+Edit `src/config.js` — names, parents, dates, events, venues, WhatsApp link,
+gallery photos, music, and asset paths. Google Fonts require internet access.
