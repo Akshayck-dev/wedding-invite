@@ -5,9 +5,9 @@
 
 const config = {
   assets: {
-    openingVideo: "/assets/opening.mp4",
-    poster: "/assets/opening-poster.jpg",
-    heroFinalFrame: "/assets/hero-final-frame.jpg",
+    openingVideo: "/assets/opening-sage.mp4",
+    poster: "/assets/opening-sage-poster.jpg",
+    heroFinalFrame: "/assets/hero-final-frame-sage.jpg",
     music: "/assets/music.mp3", // optional — if missing, the music toggle hides itself
   },
 
