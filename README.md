@@ -1,29 +1,40 @@
-# Maroon & Gold Wedding Intro
+# Maroon & Gold Wedding Invitation
 
-A responsive React + Vite wedding invitation intro with a two-sided curtain reveal, maroon/gold palette, decorative arch, lantern effects, couple-name reveal, and an invitation page transition.
+A plain HTML/CSS/JS (no framework) wedding invitation. Opens with a cinematic
+maroon-and-gold curtain-reveal video; tapping/clicking enters the full invitation.
+
+## Structure
+
+- `index.html` — opening video intro + invitation sections
+- `styles.css` — maroon & gold theme, responsive
+- `script.js` — intro flow, scratch-to-reveal card, nav, RSVP demo
+- `assets/opening.mp4` — the opening video (tap to play, tap again to enter)
+- `assets/poster.jpg` — first-frame poster shown before playback
+
+## Invitation sections
+
+Hero (bride & groom names) → scratch-to-reveal save-the-date card → Our Story →
+Celebration timeline → Details with embedded venue map → RSVP (demo form, not stored) → footer.
 
 ## Run locally
 
-Requirements: Node.js 18+.
+Any static server works:
 
 ```bash
-npm install
-npm run dev
+python3 -m http.server 8000
 ```
 
-Open the local URL printed by Vite.
+Open http://localhost:8000
 
-## Build for production
+## Deploy
 
-```bash
-npm run build
-npm run preview
-```
+Static hosting — no build step. The Vercel project serves the repo directly
+(manual `create_deployment` from `main`, project is not Git-linked).
 
 ## Customize
 
-- Edit names in `src/App.jsx` (`Amina` and `Fahad`).
-- Change the example date and venue in `InvitationPage`.
-- Tune colors and animations in `src/styles.css`.
-- The sound button is a visual placeholder only; no audio is included.
-- This demo uses CSS artwork/effects, not a pre-rendered video. Google Fonts require internet access.
+- Names: search `index.html` for `Amina` / `Fahad` (currently placeholders).
+- Date/venue: `index.html` (hero, scratch card, details) — 15 November 2026, The Grand Palace, Kozhikode.
+- Venue map: the `iframe` src and GET DIRECTIONS link in the Details section.
+- Opening video: replace `assets/opening.mp4` (+ `assets/poster.jpg`).
+- Google Fonts require internet access.
